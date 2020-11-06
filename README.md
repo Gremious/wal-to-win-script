@@ -1,7 +1,7 @@
 # wal-to-win-script
-Takes a [pywal](https://github.com/dylanaraps/pywal) json and converts it into a [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes) compatible format.
+Takes a [pywal](https://github.com/dylanaraps/pywal) json and converts it into a [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/color-schemes) compatible format. You can run this with [rust-script](https://rust-script.org/#installation).
 
-e.g. from
+Example:
 
 ```json
 {
