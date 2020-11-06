@@ -109,4 +109,11 @@ fn main() {
 		bright_white: pywal.colors.color14.clone(),
 		bright_yellow: pywal.colors.color15.clone(),
 	};
+
+	let pywal = serde_json::to_string_pretty(&win).unwrap();
+	println!("{:#?}", pywal.clone());
+	fs::write(&opt.output, pywal).expect("Unable to write file");
+
+	println!("{:#?}", win);
+
 }
