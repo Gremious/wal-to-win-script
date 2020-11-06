@@ -85,4 +85,28 @@ fn main() {
 	let opt = Opt::from_args();
 	let json_string = fs::read_to_string(&opt.input).expect("Something went wrong reading the file");
 	let pywal: Pywal = serde_json::from_str(&json_string).unwrap();
+
+	let win: WinTerm = WinTerm {
+		name: opt.input.file_stem().unwrap().to_str().unwrap().to_string(),
+		cursor_color: pywal.special.cursor.clone(),
+		selection_background: pywal.special.foreground.clone(),
+		background: pywal.special.background.clone(),
+		foreground: pywal.special.foreground.clone(),
+		black: pywal.colors.color0.clone(),
+		blue: pywal.colors.color1.clone(),
+		cyan: pywal.colors.color2.clone(),
+		green: pywal.colors.color3.clone(),
+		purple: pywal.colors.color4.clone(),
+		red: pywal.colors.color5.clone(),
+		white: pywal.colors.color6.clone(),
+		yellow: pywal.colors.color7.clone(),
+		bright_black: pywal.colors.color8.clone(),
+		bright_blue: pywal.colors.color9.clone(),
+		bright_cyan: pywal.colors.color10.clone(),
+		bright_green: pywal.colors.color11.clone(),
+		bright_purple: pywal.colors.color12.clone(),
+		bright_red: pywal.colors.color13.clone(),
+		bright_white: pywal.colors.color14.clone(),
+		bright_yellow: pywal.colors.color15.clone(),
+	};
 }
