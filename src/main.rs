@@ -178,7 +178,7 @@ fn main() {
 	}
 
 	let win = move_values(opt.input.file_stem().unwrap().to_str().unwrap().to_string(), pywal);
-
+	if opt.verbose { log::info!("{:#?}", &win); }
 	let win_js = serde_json::to_string_pretty(&win).unwrap();
 
 	let output_dir = if let Some(output_dir) = &opt.output { output_dir.clone() } else {
@@ -191,9 +191,7 @@ fn main() {
 			panic!("Invalid/non-unicode input path.");
 		}
 	};
-
 	if opt.verbose { log::info!("output_dir {:#?}", output_dir); }
 
 	fs::write(output_dir, win_js).expect("Unable to write file");
-	if opt.verbose { log::info!("{:#?}", &win); }
 }
