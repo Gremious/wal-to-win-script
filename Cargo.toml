@@ -1,8 +1,12 @@
 [package]
 name = "wal-to-win-script"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["gremious <gremious@protonmail.com>"]
 edition = "2018"
+
+[[bin]]
+name = "wtws"
+path = "src/wtws.rs"
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
