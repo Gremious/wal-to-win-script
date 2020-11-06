@@ -151,29 +151,33 @@ fn main() {
 	let pywal: Pywal = serde_json::from_str(&json_string).expect("Not a valid json");
 	if opt.verbose { log::info!("{:#?}", &pywal); }
 
-	let win: WinTerm = WinTerm {
-		name: opt.input.file_stem().unwrap().to_str().unwrap().to_string(),
-		cursor_color: pywal.special.cursor.clone(),
-		selection_background: pywal.special.foreground.clone(),
-		background: pywal.special.background.clone(),
-		foreground: pywal.special.foreground.clone(),
-		black: pywal.colors.color0.clone(),
-		blue: pywal.colors.color1.clone(),
-		cyan: pywal.colors.color2.clone(),
-		green: pywal.colors.color3.clone(),
-		purple: pywal.colors.color4.clone(),
-		red: pywal.colors.color5.clone(),
-		white: pywal.colors.color6.clone(),
-		yellow: pywal.colors.color7.clone(),
-		bright_black: pywal.colors.color8.clone(),
-		bright_blue: pywal.colors.color9.clone(),
-		bright_cyan: pywal.colors.color10.clone(),
-		bright_green: pywal.colors.color11.clone(),
-		bright_purple: pywal.colors.color12.clone(),
-		bright_red: pywal.colors.color13.clone(),
-		bright_white: pywal.colors.color14.clone(),
-		bright_yellow: pywal.colors.color15,
-	};
+	fn move_values(name: String, pywal: Pywal) -> WinTerm {
+		WinTerm {
+			name,
+			cursor_color: pywal.special.cursor,
+			selection_background: pywal.special.foreground.clone(),
+			background: pywal.special.background,
+			foreground: pywal.special.foreground,
+			black: pywal.colors.color0,
+			blue: pywal.colors.color1,
+			cyan: pywal.colors.color2,
+			green: pywal.colors.color3,
+			purple: pywal.colors.color4,
+			red: pywal.colors.color5,
+			white: pywal.colors.color6,
+			yellow: pywal.colors.color7,
+			bright_black: pywal.colors.color8,
+			bright_blue: pywal.colors.color9,
+			bright_cyan: pywal.colors.color10,
+			bright_green: pywal.colors.color11,
+			bright_purple: pywal.colors.color12,
+			bright_red: pywal.colors.color13,
+			bright_white: pywal.colors.color14,
+			bright_yellow: pywal.colors.color15,
+		}
+	}
+
+	let win = move_values(opt.input.file_stem().unwrap().to_str().unwrap().to_string(), pywal);
 
 	let win_js = serde_json::to_string_pretty(&win).unwrap();
 
