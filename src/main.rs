@@ -69,7 +69,20 @@ struct WinTerm {
 	bright_yellow: String,
 }
 
+#[derive(StructOpt, Debug)]
+#[structopt(name = "basic")]
+struct Opt {
+	/// File to process
+	#[structopt(name = "INPUT", parse(from_os_str))]
+	files: PathBuf,
+
+	/// Output file
+	#[structopt(name = "OUTPUT", parse(from_os_str))]
+	output: PathBuf,
+}
+
 fn main() {
+	let opt = Opt::from_args();
 	let path = Path::new("D:/Libraries/Projects/Programming/Rust/ColorScript/src/illusion_theme.json").to_path_buf();
 	let json_string = fs::read_to_string(path).expect("Something went wrong reading the file");
 	let deserialized: Pywal = serde_json::from_str(&json_string).unwrap();
